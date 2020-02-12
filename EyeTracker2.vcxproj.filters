@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\ofApp.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\of_v0.11.0_vs2017_release\addons\ofxGui\src\ofxBaseGui.cpp">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\of_v0.11.0_vs2017_release\addons\ofxGui\src\ofxButton.cpp">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\of_v0.11.0_vs2017_release\addons\ofxGui\src\ofxColorPicker.cpp">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\of_v0.11.0_vs2017_release\addons\ofxGui\src\ofxGuiGroup.cpp">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\of_v0.11.0_vs2017_release\addons\ofxGui\src\ofxInputField.cpp">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\of_v0.11.0_vs2017_release\addons\ofxGui\src\ofxLabel.cpp">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\of_v0.11.0_vs2017_release\addons\ofxGui\src\ofxPanel.cpp">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\of_v0.11.0_vs2017_release\addons\ofxGui\src\ofxSlider.cpp">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\of_v0.11.0_vs2017_release\addons\ofxGui\src\ofxSliderGroup.cpp">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\of_v0.11.0_vs2017_release\addons\ofxGui\src\ofxToggle.cpp">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\of_v0.11.0_vs2017_release\addons\ofxTobiiEyeX\src\ofxTobiiEyeX.cpp">
+      <Filter>addons\ofxTobiiEyeX\src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{d8376475-7454-4a24-b08a-aac121d3ad6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons">
+      <UniqueIdentifier>{12129309-501a-4542-8b75-a741c17abc6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxGui">
+      <UniqueIdentifier>{bfd3f0ff-4918-43bf-bf84-d0fbd9293b9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxGui\src">
+      <UniqueIdentifier>{ad9aa1a0-5f9a-4d34-80e7-120d99458587}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxTobiiEyeX">
+      <UniqueIdentifier>{9f0202c8-d849-4faf-87da-323bd8fe3598}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxTobiiEyeX\src">
+      <UniqueIdentifier>{dd3e7a4a-67e0-4cdf-956b-f64345abffaf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxTobiiEyeX\libs">
+      <UniqueIdentifier>{e194c032-b2b6-47fe-9067-25e3fdc3489f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxTobiiEyeX\libs\TobiiEyeXSdk">
+      <UniqueIdentifier>{fb8fc6bf-b43f-494d-9797-2d865c14f5b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include">
+      <UniqueIdentifier>{d65a0f99-1a38-4ebb-9789-242b05a713ca}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\ofApp.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\of_v0.11.0_vs2017_release\addons\ofxGui\src\ofxBaseGui.h">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\of_v0.11.0_vs2017_release\addons\ofxGui\src\ofxButton.h">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\of_v0.11.0_vs2017_release\addons\ofxGui\src\ofxColorPicker.h">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\of_v0.11.0_vs2017_release\addons\ofxGui\src\ofxGui.h">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\of_v0.11.0_vs2017_release\addons\ofxGui\src\ofxGuiGroup.h">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\of_v0.11.0_vs2017_release\addons\ofxGui\src\ofxGuiUtils.h">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\of_v0.11.0_vs2017_release\addons\ofxGui\src\ofxInputField.h">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\of_v0.11.0_vs2017_release\addons\ofxGui\src\ofxLabel.h">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\of_v0.11.0_vs2017_release\addons\ofxGui\src\ofxPanel.h">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\of_v0.11.0_vs2017_release\addons\ofxGui\src\ofxSlider.h">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\of_v0.11.0_vs2017_release\addons\ofxGui\src\ofxSliderGroup.h">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\of_v0.11.0_vs2017_release\addons\ofxGui\src\ofxToggle.h">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\of_v0.11.0_vs2017_release\addons\ofxTobiiEyeX\src\ofxTobiiEyeX.h">
+      <Filter>addons\ofxTobiiEyeX\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\of_v0.11.0_vs2017_release\addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include\EyeX.h">
+      <Filter>addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\of_v0.11.0_vs2017_release\addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include\EyeXActions.h">
+      <Filter>addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\of_v0.11.0_vs2017_release\addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include\EyeXAsyncData.h">
+      <Filter>addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\of_v0.11.0_vs2017_release\addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include\EyeXBehavior.h">
+      <Filter>addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\of_v0.11.0_vs2017_release\addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include\EyeXBounds.h">
+      <Filter>addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\of_v0.11.0_vs2017_release\addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include\EyeXClientTypes.h">
+      <Filter>addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\of_v0.11.0_vs2017_release\addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include\EyeXCommand.h">
+      <Filter>addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\of_v0.11.0_vs2017_release\addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include\EyeXConstants.h">
+      <Filter>addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\of_v0.11.0_vs2017_release\addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include\EyeXContext.h">
+      <Filter>addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\of_v0.11.0_vs2017_release\addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include\EyeXEnv.h">
+      <Filter>addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\of_v0.11.0_vs2017_release\addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include\EyeXEvent.h">
+      <Filter>addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\of_v0.11.0_vs2017_release\addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include\EyeXFrameworkTypes.h">
+      <Filter>addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\of_v0.11.0_vs2017_release\addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include\EyeXInteractor.h">
+      <Filter>addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\of_v0.11.0_vs2017_release\addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include\EyeXInternalLiterals.h">
+      <Filter>addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\of_v0.11.0_vs2017_release\addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include\EyeXInternalTypes.h">
+      <Filter>addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\of_v0.11.0_vs2017_release\addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include\EyeXLiterals.h">
+      <Filter>addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\of_v0.11.0_vs2017_release\addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include\EyeXMacros.h">
+      <Filter>addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\of_v0.11.0_vs2017_release\addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include\EyeXNotification.h">
+      <Filter>addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\of_v0.11.0_vs2017_release\addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include\EyeXObject.h">
+      <Filter>addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\of_v0.11.0_vs2017_release\addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include\EyeXProperty.h">
+      <Filter>addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\of_v0.11.0_vs2017_release\addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include\EyeXQuery.h">
+      <Filter>addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\of_v0.11.0_vs2017_release\addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include\EyeXSharedLiterals.h">
+      <Filter>addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\of_v0.11.0_vs2017_release\addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include\EyeXSnapshot.h">
+      <Filter>addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\of_v0.11.0_vs2017_release\addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include\EyeXStates.h">
+      <Filter>addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\of_v0.11.0_vs2017_release\addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include\EyeXUtils.h">
+      <Filter>addons\ofxTobiiEyeX\libs\TobiiEyeXSdk\include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="icon.rc" />
+  </ItemGroup>
+</Project>
