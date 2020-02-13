@@ -12,7 +12,13 @@ public:
 	void draw();
 	void keyPressed(int key);
 	void exit();
+	void startPressed();
+	void resetElementsPos();
+
+	int imgHeight;
+	int imgWidth;
 
 	ofxButton startButton;
 	ofxTobiiEyeX mEyeX;
+	ofImage img1;
 };
