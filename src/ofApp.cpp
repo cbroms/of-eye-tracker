@@ -1,6 +1,8 @@
-#include "ofApp.h"
 #include <string> 
+#include <chrono>
+#include "ofApp.h"
 
+using namespace std;
 
 void ofApp::setup() {
 	ofSetCircleResolution(60);
@@ -9,6 +11,8 @@ void ofApp::setup() {
 	img1.load("images/one.jpg");
 	imgWidth = img1.getWidth();
 	imgHeight = img1.getHeight();
+	imgX = 0;
+	imgY = 0;
 
 	// start button setup
 	startButton.addListener(this, &ofApp::startPressed);
@@ -22,26 +26,38 @@ void ofApp::setup() {
 	
 	// set the position of elements on screen
 	resetElementsPos();
+
+	trackingInProgress = false;
+	data = json::array();
 }
 
 
 void ofApp::startPressed() {
-	cout << "Button pressed\n";
+
+	if (trackingInProgress) {
+		trackingInProgress = false;
+		cout << data.dump(4) << endl;
+	}
+	else {
+		// start the timer 
+		startTime = chrono::high_resolution_clock::now();
+		trackingInProgress = true;
+	}
+
 }
 
 
 void ofApp::update() {
 
 	mEyeX.update();
-	
 }
 
 
 void ofApp::draw() {
 	ofBackground(30);
 
-	img1.draw(0, 0, imgWidth, imgHeight);
-
+	// this stuff will change when there's a state 
+	img1.draw(imgX, imgY, imgWidth, imgHeight);
 	startButton.draw();
 
 	// Draw eye position
@@ -65,40 +81,19 @@ void ofApp::draw() {
 	}*/
 
 	// Draw gaze point
+	// probably don't want to do this when we're recording
 	ofSetColor(255, 255, 255);
 	ofDrawCircle(mEyeX.getGazePointData().X, mEyeX.getGazePointData().Y, 20);
+	//ofDrawCircle(mEyeX.getFixationPoint(), 25);
 
-	
-
-	// Draw fixation
-	switch (mEyeX.getFixationData().FixationDataMode)
-	{
-	case TX_FIXATIONDATAEVENTTYPE_BEGIN:
-		ofSetColor(255, 0, 0);
-		break;
-	case TX_FIXATIONDATAEVENTTYPE_END:
-		ofSetColor(0, 0, 255);
-		break;
-	case TX_FIXATIONDATAEVENTTYPE_DATA:
-		ofSetColor(255, 0, 255);
-		break;
+	if (trackingInProgress) {
+		// record the eye pos points to a file
+		// we're using the gaze point rather than the fixation point because it is 
+		// essentially the raw stream of data, not corrected for just the points where
+		// the eyes fixate (there's no movement in the fixation points)
+		recordGazeStream(mEyeX.getGazePoint());
 	}
-	ofNoFill();
-	ofDrawCircle(mEyeX.getFixationPoint(), 25);
-
-	/*
-	stringstream ss;
-	ss << "Output information about your eyes" << endl;
-	ss << "- Left Eye Position  : " << tx.getLeftEyePosition() << endl;
-	ss << "- Right Eye Position : " << tx.getRightEyePosition() << endl;
-	ss << "Output information about your eyes (Normalized)" << endl;
-	ss << "- Left Eye Position  : " << tx.getLeftEyePosNorm() << endl;
-	ss << "- Right Eye Position : " << tx.getRightEyePosNorm() << endl;
-	ss << "Output information aboud your gaze position" << endl;
-	ss << "- Gaze position: " << tx.getGaze() << endl;
-	ofSetColor(255);
-	ofDrawBitmapString(ss.str(), 20, 20);
-	*/
+	
 }
 
 // center the button and images 
@@ -111,27 +106,33 @@ void ofApp::resetElementsPos() {
 	startButton.setPosition(w/2 - startButton.getWidth()/2 , h/2 - startButton.getHeight()/2);
 
 	// set image position
-	int ih = img1.getHeight();
-	/*ofPixels pix = img1.getPixels();
-	cout << std::to_string(pix.getHeight()) << " " << std::to_string(pix.getWidth()) << "\n";*/
-	
-	int iw = img1.getWidth();
+	float ih = img1.getHeight();
+	float iw = img1.getWidth();
 
-	int ihr = ih / iw;
-	int iwr = iw / ih;
+	float ihr = ih / iw;
+	float iwr = iw / ih;
 
-	if (ihr > iwr) {
-		// vertical image
-		// get scale factor 
-		// this isn't working ATM
-		int scale = h / ih;
-		int newW = iw * scale;
-		imgHeight = h;
-		imgWidth = newW;
-	}
-	else {
-		// horizontal image
-	}
+	// resize image to fill screen
+	// this isn't going to work for images with an aspect ratio larger than the screen
+	double newW = h * iwr;
+	imgHeight = h;
+	imgWidth = newW;
+	imgY = 0;
+	imgX = w / 2 - imgWidth / 2;
+}
+
+
+// save the eye positions to json
+void ofApp::recordGazeStream(ofPoint loc) {
+
+	// calculate the number of ms since start 
+	auto now = chrono::high_resolution_clock::now();
+	auto dur = now - startTime;
+	auto ms = chrono::duration_cast<chrono::milliseconds>(dur).count();
+
+	// create an object to store the fixation point and time
+	json fixation = json::object({ {"time", ms}, {"x", loc.x}, {"y", loc.y} });
+	data.push_back(fixation);
 
 }
 
