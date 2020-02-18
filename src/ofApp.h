@@ -19,17 +19,20 @@ public:
 	void exit();
 	void startPressed();
 	void resetElementsPos();
-	void recordGazeStream(ofPoint loc);
+	void recordGazeStream(ofPoint gaze, ofPoint fixation);
 
 	int imgHeight;
 	int imgWidth;
 	int imgX;
 	int imgY;
 
+	int currentStep;
+
 	json data;
 
 	bool trackingInProgress;
-	chrono::time_point<chrono::steady_clock> startTime;
+	chrono::time_point<chrono::high_resolution_clock> recordingStartTime;
+	chrono::time_point<chrono::steady_clock> stepStartTime;
 
 	ofxButton startButton;
 	ofxTobiiEyeX mEyeX;

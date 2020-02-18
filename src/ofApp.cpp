@@ -5,6 +5,8 @@
 using namespace std;
 
 void ofApp::setup() {
+
+
 	ofSetCircleResolution(60);
 
 	// image setup 
@@ -29,6 +31,10 @@ void ofApp::setup() {
 
 	trackingInProgress = false;
 	data = json::array();
+
+	// start the step timer
+	stepStartTime = chrono::steady_clock::now();
+	currentStep = 0;
 }
 
 
@@ -40,10 +46,13 @@ void ofApp::startPressed() {
 	}
 	else {
 		// start the timer 
-		startTime = chrono::high_resolution_clock::now();
+		recordingStartTime = chrono::high_resolution_clock::now();
 		trackingInProgress = true;
-	}
 
+		// start the next step and the timer for the next step
+		currentStep++;
+		stepStartTime = recordingStartTime;
+	}
 }
 
 
@@ -54,44 +63,46 @@ void ofApp::update() {
 
 
 void ofApp::draw() {
+
 	ofBackground(30);
 
-	// this stuff will change when there's a state 
-	img1.draw(imgX, imgY, imgWidth, imgHeight);
-	startButton.draw();
+	// get the time the current step has been going
+	auto now = chrono::steady_clock::now();
+	auto dur = now - stepStartTime;
+	auto elapsedS = chrono::duration_cast<chrono::seconds>(dur).count();
 
-	// Draw eye position
-	/*ofSetColor(0, 255, 0);
-	ofFill();
-	if (mEyeX.hasLeftEye())
+
+	switch (currentStep)
 	{
-		ofPoint p = mEyeX.getLeftEyeNormalized();
-		ofDrawCircle(
-			p.x * ofGetWidth(),
-			p.y * ofGetHeight(),
-			(1. - p.z) * 80);
+	case 0: 
+		// for the first step, set up the screen with an intro message
+		ofDrawBitmapString("Welcome", 100, 100);
+		
+		// draw gaze point 
+		ofSetColor(255, 255, 255);
+		ofDrawCircle(mEyeX.getGazePointData().X, mEyeX.getGazePointData().Y, 20);
+	//	ofDrawCircle(mEyeX.getFixationPoint(), 25);
+
+		startButton.draw();
+		break;
+	case 1: 
+		img1.draw(imgX, imgY, imgWidth, imgHeight);
+		if (elapsedS > 5) {
+			currentStep++;
+		}
+		break;
+	case 2:
+		ofDrawBitmapString("All done!", 100, 100);
+		break;
+	default:
+		cout << "Invalid step!";
+		break;
 	}
-	if (mEyeX.hasRightEye())
-	{
-		ofPoint p = mEyeX.getRightEyeNormalized();
-		ofDrawCircle(
-			p.x * ofGetWidth(),
-			p.y * ofGetHeight(),
-			(1. - p.z) * 80);
-	}*/
 
-	// Draw gaze point
-	// probably don't want to do this when we're recording
-	ofSetColor(255, 255, 255);
-	ofDrawCircle(mEyeX.getGazePointData().X, mEyeX.getGazePointData().Y, 20);
-	//ofDrawCircle(mEyeX.getFixationPoint(), 25);
 
 	if (trackingInProgress) {
 		// record the eye pos points to a file
-		// we're using the gaze point rather than the fixation point because it is 
-		// essentially the raw stream of data, not corrected for just the points where
-		// the eyes fixate (there's no movement in the fixation points)
-		recordGazeStream(mEyeX.getGazePoint());
+		recordGazeStream(mEyeX.getGazePoint(), mEyeX.getFixationPoint());
 	}
 	
 }
@@ -123,17 +134,16 @@ void ofApp::resetElementsPos() {
 
 
 // save the eye positions to json
-void ofApp::recordGazeStream(ofPoint loc) {
+void ofApp::recordGazeStream(ofPoint gaze, ofPoint fixation) {
 
 	// calculate the number of ms since start 
 	auto now = chrono::high_resolution_clock::now();
-	auto dur = now - startTime;
+	auto dur = now - recordingStartTime;
 	auto ms = chrono::duration_cast<chrono::milliseconds>(dur).count();
 
 	// create an object to store the fixation point and time
-	json fixation = json::object({ {"time", ms}, {"x", loc.x}, {"y", loc.y} });
-	data.push_back(fixation);
-
+	json gazeObj = json::object({ {"time", ms}, {"x", gaze.x}, {"y", gaze.y} });
+	data.push_back(gazeObj);
 }
 
 void ofApp::keyPressed(int key)
