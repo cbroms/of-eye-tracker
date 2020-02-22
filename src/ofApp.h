@@ -20,6 +20,9 @@ public:
 	void startPressed();
 	void resetElementsPos();
 	void recordGazeStream(ofPoint gaze, ofPoint fixation);
+	void saveGazeStreamToFile(ofImage img);
+	void drawInstructionText(string message, int width, int height);
+	void drawCurrentImage(int elapsedS, int numSecondsLooking);
 
 	int imgHeight;
 	int imgWidth;
@@ -28,13 +31,23 @@ public:
 
 	int currentStep;
 
+	bool debug = false;
+
 	json data;
 
-	bool trackingInProgress;
+	string filename = "";
+
 	chrono::time_point<chrono::high_resolution_clock> recordingStartTime;
 	chrono::time_point<chrono::steady_clock> stepStartTime;
 
 	ofxButton startButton;
 	ofxTobiiEyeX mEyeX;
-	ofImage img1;
+
+	ofTrueTypeFont font;
+
+	int numImages = 3;
+	int currentImage = 0;
+
+	ofImage imgs[3];
+
 };
