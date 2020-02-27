@@ -23,6 +23,7 @@ public:
 	void saveGazeStreamToFile(ofImage img);
 	void drawInstructionText(string message, int width, int height);
 	void drawCurrentImage(int elapsedS, int numSecondsLooking);
+	void drawCurrentImageUntilComplete(bool complete);
 
 	int imgHeight;
 	int imgWidth;
@@ -30,8 +31,11 @@ public:
 	int imgY;
 
 	int currentStep;
+	int numSecondsLooking = 40;
 
 	bool debug = false;
+	bool recording = false; 
+	bool screenComplete = false;
 
 	json data;
 
@@ -45,9 +49,9 @@ public:
 
 	ofTrueTypeFont font;
 
-	int numImages = 3;
+	int numImages = 4;
 	int currentImage = 0;
 
-	ofImage imgs[3];
+	ofImage imgs[4];
 
 };

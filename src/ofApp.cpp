@@ -85,12 +85,32 @@ void ofApp::drawCurrentImage(int elapsedS, int numSecondsLooking) {
 	}
 }
 
+void ofApp::drawCurrentImageUntilComplete(bool complete) {
+
+	// while the drawing is not complete, draw the image and track/save fixation and gaze points
+	if (!complete) {
+		imgs[currentImage].draw(imgX, imgY, imgWidth, imgHeight);
+
+		// record the eye pos points to a file if the user is hitting the record key
+		if (recording) {
+			recordGazeStream(mEyeX.getGazePoint(), mEyeX.getFixationPoint());
+		}
+	}
+	else {
+		// we're done, move on to the next screen
+		saveGazeStreamToFile(imgs[currentImage]);
+		currentStep++;
+		currentImage++;
+		resetElementsPos();
+		screenComplete = false;
+	}
+}
+
+
 
 void ofApp::draw() {
 
 	ofBackground(30);
-
-	int numSecondsLooking = 5;
 
 	int h = ofGetWindowHeight();
 	int w = ofGetWindowWidth();
@@ -123,15 +143,28 @@ void ofApp::draw() {
 	
 	case 4: // show the third question and next button
 
-		drawInstructionText("Done! Continue to the next image.", w, h);
+		drawInstructionText("Done! Now, constellations. Continue to the next image.", w, h);
 		startButton.draw();
 		break;
 
 	case 5: // show third image and track the gaze
-		drawCurrentImage(elapsedS, numSecondsLooking);
+
+		// here we're allowing the user to determine when they're done and when the program records their gaze
+		drawCurrentImageUntilComplete(screenComplete);
 		break;
 
-	case 6: // complete text
+	case 6: // show the fourth question and next button
+
+		drawInstructionText("Done! Continue to the next image.", w, h);
+		startButton.draw();
+		break;
+
+	case 7: // show fourth image and track the gaze
+
+		drawCurrentImageUntilComplete(screenComplete);
+		break;
+
+	case 8: // complete text
 
 		drawInstructionText("All done!", w, h);
 		break;
@@ -176,13 +209,25 @@ void ofApp::resetElementsPos() {
 		float ihr = ih / iw;
 		float iwr = iw / ih;
 
-		// resize image to fill screen
-		// this isn't going to work for images with an aspect ratio larger than the screen
-		double newW = h * iwr;
-		imgHeight = h;
-		imgWidth = newW;
-		imgY = 0;
-		imgX = w / 2 - imgWidth / 2;
+		// distance from the edge to render the image
+		float buffer = 100;
+
+		// if the width is greater than the height, fit the width
+		if (iwr > ihr) {
+			float newH = (h - (buffer * 2));
+			imgHeight = newH;
+			imgWidth = newH * iwr;
+			imgY = h / 2 - imgHeight / 2;
+			imgX = w / 2 - imgWidth / 2;
+		}
+		else {
+			// fit the height
+			float newW = (w - (buffer * 2 ));
+			imgHeight = newW * ihr;
+			imgWidth = newW;
+			imgY = h / 2 - imgHeight / 2;
+			imgX = w / 2 - imgWidth / 2;
+		}
 	}
 }
 
@@ -209,7 +254,7 @@ void ofApp::saveGazeStreamToFile(ofImage img) {
 
 	// create an object to hold the general image info and json data collected
 	// save the image's height, width, and position
-	json completeObj = json::object({ { "h", img.getHeight() }, { "w", img.getWidth() }, {"x", imgX }, { "y", imgY }, { "totalTime", ms }, {"data", data } });
+	json completeObj = json::object({ { "h", imgHeight }, { "w", imgWidth }, {"x", imgX }, { "y", imgY }, { "totalTime", ms }, {"data", data } });
 
 	// create the file name (time-currentStep) if it hasn't been created already
 	if (filename.length() == 0) {
@@ -240,6 +285,20 @@ void ofApp::keyPressed(int key)
 
 	if (key == 'd') {
 		debug = !debug;
+	}
+
+	if (key == 'r') {
+		/*if (!recording) {
+			debug = true;
+		}
+		else {
+			debug = false;
+		}*/
+		recording = !recording;
+	}
+
+	if (key == 'n') {
+		screenComplete = true;
 	}
 }
 
